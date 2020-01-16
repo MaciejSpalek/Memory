@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Boogaloo', cursive;
+}
+
+
+:root {
+    --skyBlue: rgb(79, 185, 255);
+}
+
+
+@mixin flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    
+    height: 100vh;
+}
+
+
+.start {
+    @include flex();
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-image: url(image/memory.jpg);
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+
+    &__header {
+        @include flex();
+        margin-bottom: 1.5em;
+    }
+
+    &__icon {
+        @include flex();
+        height: 100%;
+        margin-right: .1em;
+        color: rgb(79, 185, 255);
+        font-size: 4.5em;
+        text-shadow: .05em .05em .05em  black;
+    }
+
+    &__title {
+        color: var(--skyBlue);
+        font-size: 4.5em;
+        text-shadow: .05em .05em .05em  black;
+    }
+
+    &__button {
+        width: 30%;
+        border-radius: .7em;
+        border: none;
+        font-size: 2em;
+        padding: .2em;
+        line-height: 1;
+        background-color: var(--skyBlue);
+        box-shadow: .05em .05em .1em .02em black;
+    }
+
+    &__best-score {
+        position: absolute;
+        bottom: .5em;
+        left: 50%;
+        transform: translate(-50%, 0);
+        color: var(--skyBlue);
+        font-size: 1.5em;
+        margin-top: 1.5em;
+        text-shadow: .05em .05em .1em  black;
+        background-color: rgba(0, 105, 243, 0.603);
+        padding: 0 .2em;
+    }
+}
+
+
+.game {
+    @include flex();
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-image: url(image/memory.jpg);
+    background-size: cover;
+    background-position: center;
+    z-index: 2;
+}
+
+.board {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: .2em;
+    width: 90vh;
+    height: 90vh;
+
+    &__square {
+        @include flex();
+        position: relative;
+        transition: .5s;
+    }
+    
+    &__front-square {
+        @include flex();
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: 1s;
+        transform-origin: center;
+        backface-visibility: hidden;
+        background-color: black;
+        border: .05em solid white;
+        border-radius: .2em;
+        font-size: 3em;
+        color: white;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    &__back-square {
+        @include flex();
+        flex-direction: column;
+        justify-content: flex-end;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: 1s;
+        box-shadow: inset 0 0 .2em .1em black;
+        transform-origin: center;
+        transform:  rotateY(180deg);
+        backface-visibility: hidden;
+        background-position: center;
+        background-size: cover;
+        border-radius: .5em;
+        z-index: -1;
+    }
+}
+
+.end {
+    @include flex();
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #171717;
+    z-index: 3;
+    &__score {
+        font-size: 5em;
+        color: var(--skyBlue);
+    }
+}
+
+
+
+.back--transform {
+    transform:  rotateY(360deg);
+    z-index: 1;
+}
+.front--transform {
+    transform: rotateY(180deg);
+}
+
+
+
+@media(min-width: 700px) {
+    html {
+        font-size: 1.4rem;
+    }
+}
+@media(min-width: 1024px) {
+    html {
+        font-size: 1.8rem;
+    }
+}
+
+
+@media(orientation: portrait) {
+    .start {
+        justify-content: space-between;
+        padding: 2em 0;
+
+
+        &__title {
+            font-size: 6.5em;
+        }
+    
+        &__icon {
+            display: none;
+            font-size: 8em;
+        }
+        &__button {
+            width: 70%;
+            font-size: 2em;
+            padding: .4em 0;
+        }
+
+        &__best-score {
+            position: static;
+            transform: none;
+            text-align: center;
+            font-size: 1.8em;
+            width: 90%;
+        }
+    }
+    
+    .board {
+        width: 90vw;
+        height: 90vw;
+    }
+}
+@media(min-width:360px) and (orientation: portrait) {
+    html {
+        font-size: 1.1rem;
+    }
+}
+@media(min-width:400px) and (orientation: portrait) {
+    html {
+        font-size: 1.3rem;
+    }
+}
+@media(min-width:480px) and (orientation: portrait) {
+    html {
+        font-size: 1.5rem;
+    }
+}
+@media(min-width:768px) and (orientation: portrait) {
+    html {
+        font-size: 2rem;
+    }
+}
+@media(min-width:1024px) and (orientation: portrait) {
+    html {
+        font-size: 2.5rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
