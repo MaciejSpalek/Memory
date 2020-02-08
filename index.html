@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,22 +12,26 @@
 </head>
 
 <body>
-    <section class="game">
-        <div class="board"></div>
-    </section>
-    <section class="start">
-        <div class="start__header">
-            <div class="start__icon">
-                <i class="fas fa-brain"></i>
+    <div class="wrapper">
+        <section class="start">
+            <div class="start__header">
+                <div class="start__icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h1 class="start__title">Memory</h1>
             </div>
-            <div class="start__title">Memory</div>
-        </div>
-        <button class="start__button">Play!</button>
-        <span class="start__best-score"></span>
-    </section>
-    <section class="end">
-        <span class="end__score"></span>
-    </section>
+            <button class="start__button">Play!</button>
+            <span class="start__best-score"></span>
+        </section>
+
+        <section class="game">
+            <div class="board"></div>
+        </section>
+    
+        <section class="end">
+            <span class="end__score"></span>
+        </section>
+    </div>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="index.js"></script>
 </body>

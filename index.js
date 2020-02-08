@@ -1,4 +1,3 @@
-
 const $gameSection = $('.game');
 const $startSection = $('.start');
 const $endSection = $('.end');
@@ -25,6 +24,7 @@ let firstShot = '';
 let firstElement;
 let secondShot = '';
 let secondElement;
+
 let bestScore = 0;
 let matches = 0;
 let clickCounter = 0;
@@ -32,7 +32,10 @@ let isFirstAttempt = true;
 let startTime;
 
 function addSquare(array, index) {
-    array[index] = $("<div>").addClass('board__square').data('compare-id', setCompareID(photo[randomArray[index]]));
+    array[index] = $("<div>").addClass('board__square').data({
+        'compare-id': setCompareID(photo[randomArray[index]]),
+        'id': index
+    });
     const front = $("<div>").addClass('board__front-square front--transform').html("?");
     const back = $("<div>").addClass('board__back-square back--transform').css('background-image', `url(image/${photo[randomArray[index]]})`);
 
@@ -101,20 +104,24 @@ function getFirstAttempt() {
 }
 function cardsEvents() {
     $('.board__square').each((index, element) => {
-        if(clickCounter <= 2) {
-            $(element).find('.board__front-square').on('click', ()=> {
+            $(element).on('click', ()=> {
                 clickCounter++;
                 if(clickCounter <= 2) {
                     hideElement(element, false);
                 }
+
                 if(clickCounter == 1) {
                     firstElement = $(element);
                     firstShot = $(element).data('compare-id');
-                }
+                } 
+                
                 else if(clickCounter == 2) {
                     secondElement = $(element);
                     secondShot = $(element).data('compare-id');
-                    if(firstShot == secondShot) {
+                    if ($(firstElement).data('id') == $(secondElement).data('id')) {
+                        clickCounter = 1;
+                    }
+                    else if(firstShot == secondShot) { // turn on animation and remove cards
                         setTimeout(()=>{
                             removeElement(firstElement);
                             removeElement(secondElement);
@@ -134,8 +141,6 @@ function cardsEvents() {
                     }
                 }
             })
-        
-        }
     })
 }
 function removeAllSquares() {
@@ -197,8 +202,6 @@ function gameOverAnimation() {
     $($scoreLabel).html(`Best score: ${bestScore}s`)
     $('.end__score').text(`${gameTime}s`)
 }
-
-
 
 $($gameSection).fadeOut(0);
 $($endSection).fadeOut(0);
