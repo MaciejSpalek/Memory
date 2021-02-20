@@ -2,12 +2,14 @@
 
 ![Main screen](image/MemoryView.png)
 
- [Click and check it!](https://maciejspalek.github.io/Memory/)
+## Live
 
-## About the project 
+<https://maciejspalek.github.io/Memory/>
+
+## Description
 A game of remembering pictures and matching them in pairs as quickly as possible. To comparing pictures has been implemented a simple algorithm. LocalStorage is responsible for remembering the best score.
 
-## The project created with 
+## Tech/framework used
  * HTML
  * BEM
  * CSS + SASS
@@ -15,9 +17,12 @@ A game of remembering pictures and matching them in pairs as quickly as possible
  * Responsive Web Design
  * Local Storage
 
-
-## Usage
+## Installation
 
 ```
+git clone https://github.com/MaciejSpalek/Memory.git
+
+npm install
+
 npm start
 ```
